@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+  width: 85%;
+  margin: 0.5rem auto;
+}
+
+.newColor{
+  background-color: rgb(237, 248, 236);
+  border-radius: 0.3rem;
+}
