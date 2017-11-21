@@ -16,7 +16,7 @@ class App extends Component {
           friend: { name: 'Jason Maurer',age: 23 }
         },
         {
-          name: 'shader Ley',
+          name: 'shader Liey',
           age: 16,
           friend: { name: 'sony tai', age: 3 }
         }
@@ -45,7 +45,7 @@ class App extends Component {
     .then( function(jsonResponse){
       jsonResponse.forEach(element => {
 
-        
+
         // console.log(element.username);
       });
     });
