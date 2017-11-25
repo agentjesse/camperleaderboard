@@ -8,7 +8,7 @@ header{
   font-family: Futura;
   font-size: 2rem;
   background-color: rgb(237, 248, 236);
-  border-radius: 0.1rem;
+  border-radius: 0.3rem;
 }
 
 button{
@@ -18,7 +18,7 @@ button{
   font-size: 1.1rem;
   border: 3px solid rgb(158, 190, 142);
   border-radius: 1.7rem;
-  margin: 0.6rem 0.4rem 0.8rem;
+  margin: 0.4rem 0.4rem 0.4rem;
   background-color: rgb(224, 255, 137);
 }
 button:active{
