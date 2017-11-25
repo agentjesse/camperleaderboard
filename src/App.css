@@ -11,7 +11,7 @@ header{
   border-radius: 0.3rem;
 }
 
-button{
+.chooseData{
   font-family: Geneva;
   outline: none;
   width: 16rem;
@@ -21,7 +21,7 @@ button{
   margin: 0.4rem 0.4rem 0.4rem;
   background-color: rgb(224, 255, 137);
 }
-button:active{
+.chooseData:active{
   background-color:rgb(158, 190, 142);
 }
 
@@ -30,6 +30,5 @@ button:active{
   border-radius: 0.3rem;
 }
 .ReactTable .rt-tbody .rt-td{
-  /* height: 2rem; */
   padding: 0.3rem;
 }

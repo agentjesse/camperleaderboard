@@ -91,11 +91,13 @@ class App extends Component {
 
         <header>Free Code Camp Leaderboard</header>
 
-        <button
+        <button 
+                className='chooseData'
                 onClick={ ()=> this.updateMe(this.topRecent) }
         >click for top campers of: <br/>past 30 days</button>
 
-        <button
+        <button 
+                className='chooseData'
                 onClick={ ()=> this.updateMe(this.topAllTimeEarners) }
         >click for top campers of: <br/>all time</button>
 
