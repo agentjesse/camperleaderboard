@@ -4,7 +4,33 @@
   margin: 0.5rem auto;
 }
 
-.newColor{
+header{
+  font-family: Futura;
+  font-size: 2rem;
+  background-color: rgb(157, 255, 0);
+  border-radius: 0.1rem;
+}
+
+button{
+  font-family: Geneva;
+  outline: none;
+  width: 16rem;
+  color: rgb(38, 90, 0);
+  font-size: 1.1rem;
+  border: 3px solid rgb(158, 190, 142);
+  border-radius: 1.7rem;
+  margin: 0.6rem 0.4rem 0.8rem;
+  background-color: rgb(221, 255, 217);
+}
+button:active{
+  background-color:rgb(158, 190, 142);
+}
+
+.ReactTable{
   background-color: rgb(237, 248, 236);
   border-radius: 0.3rem;
+}
+.ReactTable .rt-tbody .rt-td{
+  /* height: 2rem; */
+  padding: 0.3rem;
 }

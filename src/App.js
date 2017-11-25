@@ -1,69 +1,116 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
+import './App.css';
 
 class App extends Component {
+
   constructor(props) {
     super(props);
-    //set the state
+    //hold data from second fetch to be used later
+    this.topAllTimeEarners = [];
+    this.topRecent = [];
+    //set initial state
     this.state = {
-      data:[
-        {
-          name: 'Tanner Leah',
-          age: 26,
-          friend: { name: 'Jason Maurer',age: 23 }
-        },
-        {
-          name: 'shader Liey',
-          age: 16,
-          friend: { name: 'sony tai', age: 3 }
-        }
-      ],
+      data:[],
       columns:[
-        {
-          Header: 'Name',
-          accessor: 'name' // String-based value accessors!
-          // sortable: false
+        { Header: 'Name',
+          accessor: 'name', // String-based value accessors!
+          sortable: false
         },
-        {
-          Header: 'Age',
-          accessor: 'age'
+        { Header: 'Recent Points',
+          accessor: 'ptsInPast30', // String-based value accessors!
+          sortable: false
+        },
+        { Header: 'All Time Points',
+          accessor: 'allTimePts', // String-based value accessors!
+          sortable: false
         }
       ]
     };
   }
 
-  componentDidMount(){
+  componentWillMount(){
+    // console.log('compwillmount');
+    // console.log(this);
+    let accessThis = this;
+    
+    //fetch top earners in RECENT 30 DAYS
     fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
-    .then( function(response){
-        if (response.ok){ return response.json() }
-        throw new Error('Request failed!');
-      },function(networkError){ console.log(networkError.message) } 
-    )
-    .then( function(jsonResponse){
-      jsonResponse.forEach(element => {
-
-
-        // console.log(element.username);
+      .then( function(response){
+          if (response.ok){ return response.json() }
+          throw new Error('Request failed!');
+        },function(networkError){ console.log(networkError.message) } 
+      )
+      .then( function(jsonResponse){
+        const topHundredRecent = jsonResponse.map(element => {
+            return {
+                      name: element.username,
+                      ptsInPast30: element.recent,
+                      allTimePts: element.alltime
+                   }
+          }
+        );
+        accessThis.topRecent = topHundredRecent;
+        accessThis.updateMe(topHundredRecent);
       });
-    });
+
+    //fetch top earners of all time
+    fetch('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
+      .then( function(response){
+          if (response.ok){ return response.json() }
+          throw new Error('Request failed!');
+        },function(networkError){ console.log(networkError.message) } 
+      )
+      .then( function(jsonResponse){
+        const topHundredAllTime = jsonResponse.map(element => {
+            return {
+                      name: element.username,
+                      ptsInPast30: element.recent,
+                      allTimePts: element.alltime
+                   }
+          }
+        );
+        accessThis.topAllTimeEarners = topHundredAllTime;
+      });
+
+  }
+  
+  updateMe(arr){
+    this.setState({ data: arr });
+    //----dummy data
+    // this.setState({ data: [
+    //   { name: 'boor shahh',non:14 },
+    //   { name: 'bffdf ahh',non:44 }
+    // ] });
   }
 
   render() {
     return (
       <div className="App">
-        <ReactTable className='newColor -highlight'
+
+        <header>Free Code Camp Leaderboard</header>
+
+        <button
+                onClick={ ()=> this.updateMe(this.topRecent) }
+        >click for top campers of: <br/>past 30 days</button>
+
+        <button
+                onClick={ ()=> this.updateMe(this.topAllTimeEarners) }
+        >click for top campers of: <br/>all time</button>
+
+        <ReactTable className='-highlight'
                     data={this.state.data} 
                     columns={this.state.columns}
-                    showPagination={false}
-                    defaultPageSize={10}
+                    showPagination={true}
+                    defaultPageSize={20}
                     resizable={false}
         />
       </div>
     );
   }
+
 }
 
 export default App;
