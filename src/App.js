@@ -7,10 +7,8 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    //hold data from second fetch to be used later
     this.topAllTimeEarners = [];
     this.topRecent = [];
-    //set initial state
     this.state = {
       data:[],
       columns:[
@@ -31,10 +29,7 @@ class App extends Component {
   }
 
   componentWillMount(){
-    // console.log('compwillmount');
-    // console.log(this);
     let accessThis = this;
-    
     //fetch top earners in RECENT 30 DAYS
     fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
       .then( function(response){
@@ -54,7 +49,6 @@ class App extends Component {
         accessThis.topRecent = topHundredRecent;
         accessThis.updateMe(topHundredRecent);
       });
-
     //fetch top earners of all time
     fetch('https://fcctop100.herokuapp.com/api/fccusers/top/alltime')
       .then( function(response){
